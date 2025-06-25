@@ -36,12 +36,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = registerBlock("deepslate_sapphire_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE).strength(3), UniformInt.of(3, 6)));
 
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
-        RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn);
-        return toReturn;
-    }
-
     public static final RegistryObject<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK))
     );
@@ -78,9 +72,17 @@ public class ModBlocks {
     private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
-
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
+    }
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
+
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+
+        registerBlockItem(name, toReturn);
+
+        return toReturn;
+
     }
 }
 

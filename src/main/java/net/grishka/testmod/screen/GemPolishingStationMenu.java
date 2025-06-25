@@ -120,4 +120,6 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
+
+
 }
